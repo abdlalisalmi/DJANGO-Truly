@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ block.super }}: Login{% endblock title %}
+
+{% block content %}
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-5 pt-lg-7 pt-lg-1 pt-7">
+                <form method="POST" action="{% url 'account:login' %}">{% csrf_token %}
+                    <div class="card bg-secondary shadow border-0">
+                        <div class="card-body">
+                            <div class="text-center text-muted mb-4">
+                                <img src="{% static 'img/logo.svg' %}" width=20%>
+                                <p class="display-3">Login to Truly</p>
+                            </div>
+                            <div class="">
+                                <p class="register-error">{{error}}</p>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="input-group input-group-alternative">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="ni ni-circle-08"></i></span>
+                                    </div>
+                                    <input class="form-control pl-3" name="username" placeholder="Username" type="text">
+                                </div>
+                                {% for error in form.username.errors %}
+                                    <p class="register-error text-left">{{ error }}</p>
+                                {% endfor %}
+                            </div>
+
+                            <div class="form-group focused">
+                                <div class="input-group input-group-alternative mb-1 bg-white">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
+                                    </div>
+                                    <input class="form-control pl-3" id="password-input" name="password" placeholder="Password" type="password">
+                                    <a class="show-password fa fa-eye m-2 pt-2" style="color: #6c757d;"></a>
+                                </div>
+                                {% for error in form.password.errors %}
+                                    <p class="register-error text-left">{{ error }}</p>
+                                {% endfor %}
+                            </div>
+
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-success rounded-pill m-3 text-capitalize">Login</button>
+                            </div>
+                            <div class="text-center">
+                                <a href="#" class="mr-2"><small>forgot password?</small></a>
+                                <a href="{% url 'account:register' %}" class=""><small>Create account</small></a>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+{% endblock content %}

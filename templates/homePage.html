@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <div class="container">
+        <div class="row pt-lg-5">
+            <div class="col-lg-6 mt-8">
+                <div class="home-title">
+                    <span class="">Improve yourself</span>
+                </div>
+                <p>Truly helps you know your strengths and areas for improvement by receiving constructive and candid feedback from your friends</p>
+                <div class="">
+                    <a href="{% url 'account:register' %}" class="butt butt-register text-capitalize m-2">
+                        Register <i class="fa fa-right"></i>
+                    </a>
+                    <a href="{% url 'account:login' %}" class="butt butt-login text-capitalize m-2">
+                        Login <i class="fa fa-right"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-6 mt-4 text-center">
+                <img src="{% static 'img/logo.svg' %}" width=95%>
+            </div>
+        </div>
+
+    </div>
+{% endblock content %}

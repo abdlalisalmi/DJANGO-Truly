@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ block.super }}: Messages{% endblock title %}
+
+{% block content %}
+    <div class="container pt-6">
+        <h2 class="display-4 mt-3">Messages</h2>
+        <hr class="m-0 mb-2">
+        <p>Here you will find all your messages, you can read and delete any message you want.</p>
+
+        <div class="row justify-content-center">
+                {% for message in messages %}
+
+                    <div class="col-lg-5 col-10 card message-card bg-secondary text-center shadow m-3 message-item" id="{{message.id}}">
+                        <div class="row justify-content-center mb-2">
+
+                            <div class="col-2 text-left" data-toggle="modal" data-target=".show-message{{message.id}}-modal">
+                                <i class="fa fa-envelope {% if message.has_been_read %}has-been-read {% else %}text-success{% endif %} fa-4x" id="msg-icon-{{message.id}}"></i>
+                            </div>
+
+                            <div class="col-8 text-left mt-3 pl-4" data-toggle="modal" data-target=".show-message{{message.id}}-modal">
+                                <small class="">{{message.date}}</small>
+                            </div>
+
+                            <div class="col-2 text-center message-del-div p-0">
+                                <a type="submit" class="message-del m-0 delete-message-btn" id="{{message.id}}"><i class="fa fa-trash mt-4"></i></a>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="modal fade show-message{{message.id}}-modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-sm">
+                            <div class="modal-content message-card">
+                                <a class="btn text-danger card-header p-2" data-dismiss="modal">
+                                    <i class="fa fa-times"></i>
+                                </a>
+                                <div class="card-body">
+                                    {{message.message}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                {% endfor %}
+
+
+
+        </div>
+    </div>
+{% endblock content %}

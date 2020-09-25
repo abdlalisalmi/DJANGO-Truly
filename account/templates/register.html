@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ block.super }}: Register{% endblock title %}
+
+{% block content %}
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-5 pt-lg-7 pt-lg-1 pt-7">
+                <form method="POST" action="{% url 'account:register' %}">{% csrf_token %}
+                    <div class="card bg-secondary shadow border-0">
+                        <div class="card-body">
+                            <div class="text-center text-muted mb-4">
+                                <img src="{% static 'img/logo.svg' %}" width=20%>
+                                <p class="display-3">Sign up to Truly</p>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="input-group input-group-alternative">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="ni ni-circle-08"></i></span>
+                                    </div>
+                                    <input class="form-control pl-3" name="username" placeholder="Username" type="text">
+                                </div>
+                                {% for error in form.username.errors %}
+                                    <p class="register-error text-left">{{ error }}</p>
+                                {% endfor %}
+                            </div>
+
+                            <div class="form-group">
+                                <div class="input-group input-group-alternative">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="ni ni-email-83"></i></span>
+                                    </div>
+                                    <input class="form-control pl-3" name="email" placeholder="Email" type="email">
+                                </div>
+                                {% for error in form.email.errors %}
+                                    <p class="register-error text-left">{{ error }}</p>
+                                {% endfor %}
+                            </div>
+
+                            <div class="form-group focused">
+                                <div class="input-group input-group-alternative mb-1 bg-white">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
+                                    </div>
+                                    <input class="form-control pl-3" id="password-input" name="password" placeholder="Password" type="password">
+                                    <a class="show-password fa fa-eye m-2 pt-2" style="color: #6c757d;"></a>
+                                </div>
+                                {% for error in form.password.errors %}
+                                    <p class="register-error text-left">{{ error }}</p>
+                                {% endfor %}
+                            </div>
+
+                            <div class="row mt-2">
+                                <div class="col-12">
+                                    <div class="custom-control custom-control-alternative custom-checkbox">
+                                        <input class="custom-control-input" id="customCheckRegister" type="checkbox">
+                                        <label class="custom-control-label" for="customCheckRegister">
+                                            <span>I agree with the <a href="#">Privacy Policy</a></span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="text-center m-4">
+                                <button type="submit" class="btn btn-success rounded-pill text-capitalize">Create account</button>
+                            </div>
+                            <div class="text-center">
+                                <a href="{% url 'account:login' %}" class=""><small>Already have account?</small></a>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+{% endblock content %}

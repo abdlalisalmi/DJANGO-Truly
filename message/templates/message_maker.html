@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ block.super }}: Message Maker{% endblock title %}
+
+{% block content %}
+    <div class="container pt-6">
+        <h2 class="display-4 mt-3 text-center">Message Maker</h2>
+        <hr class="m-0 mb-2">
+
+        <div class="row justify-content-center">
+            <div class="col-lg-10 text-center">
+                <p id="help-text">Send message to your friend 
+                    <span class="text-success font-weight-bold">
+                        {% if user_reciver.full_name %}{{user_reciver.full_name}}{% else %}{{user_reciver.user.username}}{% endif %}
+                    </span> with your opinion or your 
+                    <span class="text-default font-weight-bold">Truly</span> feeling.
+                </p>
+            </div>
+            <div class="col-lg-5 col-10 card message-card bg-secondary text-center shadow m-3" id="message-input-div">
+                <div class="row justify-content-center">
+                    <div class="input-group input-group-alternative mx-3 mt-3">
+                        <textarea id="message-input" class="form-control form-control-alternative" rows="8" placeholder="Write your message here ..."></textarea>
+                        <input id="message-owner" type="hidden" value="{{user_reciver.user.username}}">
+                    </div>
+
+                    <div class="col-12 text-center m-3">
+                        <a class="btn btn-success rounded-pill text-white text-capitalize" id="message-send-btn">Send <i class="fa fa-paper-plane"></i></a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+{% endblock content %}

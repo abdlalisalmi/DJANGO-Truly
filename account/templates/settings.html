@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ block.super }}: Settings{% endblock title %}
+
+{% block content %}
+    <div class="container pt-6">
+        <div class="row justify-content-center">
+            <div class="col-lg-8 mb-5">
+            <h2 class="text-center bg-secondary p-2 card">Account Settings</h2>
+
+                <h2 class="display-4 mt-3">Account visibility</h2>
+                <hr class="m-0 mb-2">
+                <p>Make your account visible on the search for users.</p>
+                <label class="custom-toggle">
+                    <input type="checkbox" {% if user.visible %}checked{% endif %} id="account-visible">
+                    <span class="custom-toggle-slider rounded-circle "></span>
+                </label>
+
+                <h2 class="display-4 mt-3">Account disable</h2>
+                <hr class="m-0 mb-2">
+                <p>When you disable your account, you will not be able to receive any messages until you enable it again.</p>
+                <label class="custom-toggle">
+                    <input type="checkbox" {% if user.disable %}checked{% endif %} id="account-disable">
+                    <span class="custom-toggle-slider rounded-circle "></span>
+                </label>
+
+                <h2 class="text-danger display-4 mt-3">Delete account</h2>
+                <hr class="m-0 mb-2">
+                <p>Once you delete your account, there is no going back. Please be certain.</p>
+                <button type="button" class="logout-btn" data-toggle="modal" data-target=".delete-account-modal">Delete Account</button>
+            </div>
+        </div>
+
+    </div>
+
+
+
+<div class="modal fade delete-account-modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="card">
+        <div class="card-header text-center display-4 p-2">Delete Account</div>
+            <div class="card-body">
+                Are you sure you want to <b>delete your account?</b>
+                <div class="row mt-4">
+                    <div class="col-6 text-center">
+                            <button type="button" id="delete-account-btn" class="logout-btn">Yes</button>
+                        <form id="delete-account-form" method="DELETE" action="{% url 'account:settings' %}">
+                            {% csrf_token %}
+                        </form>
+                    </div>
+                    <div class="col-6 text-center">
+                        <a type="button" class="p-2" data-dismiss="modal">Cancel</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+</div>
+{% endblock content %}

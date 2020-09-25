@@ -1,0 +1,91 @@
+<nav class="navbar navbar-expand-lg fixed-top m-0 p-0">{% load static %}
+    <div class="container nav-bar pt-2">
+
+        <a class="display-4 name" href="/">
+            {% comment %} <i class="ni ni-sound-wave"></i> {% endcomment %}
+            <img src="{% static 'img/logo.svg' %}" width="50px">
+             Truly
+        </a>
+        {% if request.user.is_authenticated %}
+            <li class="nav-item dropdown">
+                <a href="#" class="nav-link" data-toggle="dropdown" role="button">
+                    {% comment %} <img src="{% if user.avatar.url %}{{user.avatar.url}}{% else %}{% static 'img/user.svg' %}{% endif %}" class="img-fluid rounded-circle shadow" width="40px"> {% endcomment %}
+                    <div class="nav-profile-pic shadow" 
+                        style="background-image: url('{% if user.avatar %}{{user.avatar.url}}{% else %}{% static 'img/default-avatar.png' %}{% endif %}')">
+                    </div>
+
+                </a>
+                <div class="dropdown-menu dropdown-menu-right shadow ">
+                    <a href="#" class="dropdown-item">Messages</a>
+                    <a href="{% url 'account:profile' %}" class="dropdown-item">Profile</a>
+                    <a href="{% url 'account:settings' %}" class="dropdown-item">Settings</a>
+                    <a type="button" class="dropdown-item" data-toggle="modal" data-target=".bd-example-modal-sm">Logout</a>
+                </div>
+            </li>
+        {% else %}
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-default" aria-controls="navbar-default" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="ni ni-align-center"></i>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbar-default">
+                <div class="navbar-collapse-header">
+                    <div class="row">
+                        <div class="col-8 collapse-brand">
+                            <a href="javascript:void(0)" class="display-4 name" style="color:#525f7f">
+                                <img src="{% static 'img/logo.svg' %}" width="60px"> Truly
+                            </a>
+                        </div>
+                        <div class="col-4 collapse-close text-right pt-2">
+                            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-default" aria-controls="navbar-default" aria-expanded="false" aria-label="Toggle navigation">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <ul class="navbar-nav ml-lg-auto">
+                        <li class="nav-item">
+                            <a class="nav-link pl-0 pr-0" href="#">
+                                <span class="nav-text">AboutUS</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link pl-0 pr-0" href="#">
+                                <span class="nav-text">ContactUS</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link pr-0" href="{% url 'account:register' %}">
+                                <span class="nav-text-active">SignUP</span>
+                            </a>
+                        </li>
+            {% endif %}
+            </ul>
+            
+        </div>
+    </div>
+</nav>
+
+<div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="card">
+                <div class="card-header text-center display-4 p-2">Logout</div>
+                <div class="card-body">
+                    Are you sure you want to log out?
+                    <div class="row mt-4">
+                        <div class="col-6 text-center">
+                            <button type="button" id="logout-btn" class="logout-btn">OK</button>
+                            <form id="logout-form" method="POST" action="{% url 'account:logout' %}">
+                                {% csrf_token %}
+                            </form>
+                        </div>
+                        <div class="col-6 text-center">
+                            <a type="button" class="p-2" data-dismiss="modal">Cancel</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

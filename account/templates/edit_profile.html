@@ -1,0 +1,88 @@
+{% load static %}
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content card p-4">
+
+        <div class="card-header text-center display-4">Edit Profile</div>
+
+        <div class="card-body text-default">
+            
+            <div class="form-group">
+                <small class="">Full Name:</small>
+                <div class="input-group input-group-alternative mb-4">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fa fa-user"></i></span>
+                    </div>
+                    <input id="full_name" class="form-control form-control-alternative" value="{% if user.full_name %}{{user.full_name}}{% endif %}" type="text">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <small>Date of Birth:</small>
+                <div class="input-group input-group-alternative mb-4">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fa fa-calendar-alt"></i></span>
+                    </div>
+                    {% comment %} <input class="form-control datepicker" placeholder="Select date" type="text" value="06/20/2020"> {% endcomment %}
+                    <input id="date_of_birth" class="form-control form-control-alternative" value="{% if user.date_of_birth %}{{user.date_of_birth|date:"Y-m-d"}}{% endif %}" type="date">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <small>Boi:</small>
+                <div class="input-group input-group-alternative mb-4">
+                    <textarea id="boi" class="form-control form-control-alternative bg-secondary pl-4" type="textarea">{% if user.boi %}{{user.boi}}{% endif %}</textarea>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6 form-group">
+                    <small>Email:</small>
+                    <div class="input-group input-group-alternative">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fa fa-envelope"></i></span>
+                        </div>
+                        <input id="email" class="form-control form-control-alternative" value="{% if user.user.email %}{{user.user.email}}{% endif %}" type="text">
+                    </div>
+                    <div class="mb-4" id="email-error"></div>
+                </div>
+                <div class="col-lg-6 form-group">
+                    <small>Facebook:</small>
+                    <div class="input-group input-group-alternative mb-4">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fab fa-facebook"></i></span>
+                        </div>
+                        <input id="facebook" class="form-control form-control-alternative" value="{% if user.facebook %}{{user.facebook}}{% endif %}" type="text">
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-6 form-group">
+                    <small>Instagram:</small>
+                    <div class="input-group input-group-alternative mb-4">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fab fa-instagram"></i></span>
+                        </div>
+                        <input id="instagram" class="form-control form-control-alternative" value="{% if user.instagram %}{{user.instagram}}{% endif %}" type="text">
+                    </div>
+                </div>
+                <div class="col-lg-6 form-group">
+                    <small>Twitter:</small>
+                    <div class="input-group input-group-alternative mb-4">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fab fa-twitter"></i></span>
+                        </div>
+                        <input id="twitter" class="form-control form-control-alternative" value="{% if user.twitter %}{{user.twitter}}{% endif %}" type="text">
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+
+        <div class="col-12 text-right">
+            <button type="button" id="edit-profile-btn" class="butt butt-login">Save</button>
+            <a type="button" class="p-2" data-dismiss="modal">Cancel</a>
+        </div>
+    </div>
+  </div>
+</div>

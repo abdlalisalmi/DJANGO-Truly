@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ block.super }}: Profile{% endblock title %}
+
+{% block content %}
+<div class="container pt-8">
+    <div class="row justify-content-center">
+        <div class="col-12 text-center">
+            {% comment %} <img src="{% static 'img/user.jpg' %}" alt="" class="img-fluid rounded-circle shadow mb-2" width="200px"> {% endcomment %}
+            
+            <form id="profile-form" action="{% url 'account:profile' %}" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <label for="profile-pic">
+                    <div class="profile-pic shadow" style="background-image: url('{% if user.avatar %}{{user.avatar.url}}{% else %}{% static 'img/default-avatar.png' %}{% endif %}')">
+                        <span class="fa fa-camera"></span>
+                        <span>Change Image</span>
+                    </div>
+                </label>
+                <input type="File" name="avatar" id="profile-pic">
+            </form>
+
+        </div>
+        <div class="col-12 text-center">
+            <h2 class="display-3">@{{user.user.username}}
+                <button type="button" class="btn btn-info text-capitalize" data-toggle="modal" data-target=".bd-example-modal-lg">Edit Profile</button>
+            </h2>
+
+            <p>
+                {{user.full_name}}
+                {% if user.date_of_birth %}
+                    ({{user.date_of_birth}})
+                {% endif %}
+            </p>
+
+            <small><b>Boi: </b id="boi-text">{% if user.boi %}{{user.boi}}{% endif %}</small>
+
+            {% comment %} <ul class="nav flex-column flex-sm-row justify-content-center mt-4">
+                <li class="nav-item">
+                    <a href="{% url 'message:messages' %}" class="nav-link mb-sm-3 mb-md-0" ><strong>{{numbre_ms}}</strong> Messages</a>
+                </li>
+            </ul> {% endcomment %}
+
+
+            <div class="row justify-content-center mt-3">
+            <div class="col-lg-6 text-left">
+                <div class="card bg-secondary text-center">
+                    Your link: <a href="{{ request.get_host }}/messages/{{request.user}}" class="text-success font-weight-bold">{{ request.get_host }}/messages/{{request.user}}</a>
+                    <small>Share this link with your friends to get messages from them.</small> 
+                </div>
+                <div class="card border-0 shadow m-4">
+                    <div class="card-body col-12">
+
+                        <div class="form-group">
+                            <span class="form-control form-control-alternative py-2"/>
+                                <i class="fa fa-envelope py-2 pr-2 text-success"></i> {% if user.user.email %}<a href="emailto:{{user.user.email}}" target="_blank">{{user.user.email}}</a>{% endif %}
+                            </span>
+                        </div>
+
+                        <div class="form-group">
+                            <span class="form-control form-control-alternative py-2"/>
+                                <i class="fab fa-facebook py-2 pr-2 text-success"></i> {% if user.facebook %}<a href="{{user.facebook}}" target="_blank">{{user.facebook}}</a>{% endif %}
+                            </span>
+                        </div>
+
+                        <div class="form-group">
+                            <span class="form-control form-control-alternative py-2"/>
+                                <i class="fab fa-instagram py-2 pr-2 text-success"></i> {% if user.instagram %}<a href="{{user.instagram}}" target="_blank">{{user.instagram}}</a>{% endif %}
+                            </span>
+                        </div>
+
+                        <div class="form-group">
+                            <span class="form-control form-control-alternative py-2"/>
+                                <i class="fab fa-twitter py-2 pr-2 text-success"></i> {% if user.twitter %}<a href="{{user.twitter}}" target="_blank">{{user.twitter}}</a>{% endif %}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+        
+</div>
+
+{% include 'edit_profile.html' %}
+
+{% endblock content %}
