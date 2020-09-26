@@ -31,7 +31,7 @@ def messages(request):
 
     ac = Account.objects.get(user=request.user)
 
-    messages = Message.objects.filter(account=ac)
+    messages = Message.objects.filter(account=ac).order_by('-date')
     # message = Message.objects.first()
     context = {
         'messages': messages,
@@ -59,6 +59,4 @@ def messageMaker(request, username):
     account = get_object_or_404(Account, user=user)
 
     context.update({'user_reciver': account})
-    if request.user.is_authenticated:
-        context.update({'user': Account.objects.get(user=request.user)})
     return render(request, template_name, context)

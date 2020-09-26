@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ block.super }}: Search{% endblock title %}
+
+{% block content %}
+    <div class="container pt-6">
+        <h2 class="display-4 mt-3">Search</h2>
+        <hr class="m-0 mb-2">
+        <p>You search for <b>{{search}}</b></p>
+
+        <div class="row justify-content-center">
+            {% if accounts %}
+                {% for account in accounts %}
+
+                    <div class="col-lg-5 col-10 card  bg-secondary text-center shadow m-3">
+                        <div class="row justify-content-center">
+                            <div class="col-2 my-3">
+                                <div class="nav-profile-pic shadow" 
+                                    style="background-image: url('{% if account.avatar %}{{account.avatar.url}}{% else %}{% static 'img/default-avatar.png' %}{% endif %}')">
+                                </div>
+                            </div>
+                            <div class="col-10 text-left">
+                                <p class="display-4 mt-3 mb-0">{{account.full_name}}</p>
+                                <p class="m-0">@{{account.user.username}}</p>
+                            </div>
+                        </div>
+                    </div>
+
+
+                {% endfor %}
+            {% else %}
+            <div class="col-lg-6 text-center mb-6">
+                <p class="display-3" style="color:#a5b1c2">no results</p>
+            </div>
+            {% endif %}
+
+
+
+        </div>
+    </div>
+{% endblock content %}

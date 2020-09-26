@@ -128,3 +128,24 @@ def settings(request):
     user = Account.objects.get(user=request.user)
     context = {'user': user}
     return render(request, template_name, context)
+
+
+def search(request):
+    template_name = 'search.html'
+    context = {}
+
+    if request.method == 'POST':
+        search = request.POST.get('search', False)
+        if search:
+            users = User.objects.filter(username__contains=search)
+            accounts = []
+            for user in users:
+                accounts.append(Account.objects.get(user=user))
+            context.update(
+                {
+                    'search': search,
+                    'accounts': accounts
+                }
+            )
+
+    return render(request, template_name, context)

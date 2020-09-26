@@ -8,6 +8,7 @@ const deleteAccountBtn = document.querySelector('#delete-account-btn');
 const messagesItems = document.querySelectorAll('.message-item');
 const deleteMessageBtns = document.querySelectorAll('.delete-message-btn');
 const sendMessageBtn = document.querySelector('#message-send-btn');
+const searchBtn = document.querySelector('#search-btn');
 
 
 if (showPassword) {
@@ -163,6 +164,8 @@ if (messagesItems) {
                     if (data['statu'] == 'success') {
                         document.querySelector('#msg-icon-' + message.attributes.ID.value).classList.add('has-been-read');
                         document.querySelector('#msg-icon-' + message.attributes.ID.value).classList.remove('text-success');
+                        document.querySelector('#messages-badge1').remove();
+                        document.querySelector('#messages-badge2').remove();
                     }
                 })
         })
@@ -210,6 +213,27 @@ if (sendMessageBtn) {
     })
 }
 
+
+if (searchBtn) {
+    searchBtn.addEventListener('click', () => {
+        searchInput = document.querySelector('#search-input').value;
+        if (searchInput) {
+            document.querySelector('#query').value = searchInput;
+            document.querySelector('#search-form').submit();
+            // let formData = new FormData();
+            // formData.append('search', searchInput);
+            // fetch(`/search/`,
+            //     {
+            //         body: formData,
+            //         method: "POST",
+            //         credentials: 'same-origin',
+            //         headers: {
+            //             "X-CSRFToken": csrftoken
+            //         }
+            //     })
+        }
+    })
+}
 
 
 

@@ -10,6 +10,7 @@
         <p>Here you will find all your messages, you can read and delete any message you want.</p>
 
         <div class="row justify-content-center">
+            {% if messages %}
                 {% for message in messages %}
 
                     <div class="col-lg-5 col-10 card message-card bg-secondary text-center shadow m-3 message-item" id="{{message.id}}">
@@ -45,6 +46,11 @@
 
 
                 {% endfor %}
+            {% else %}
+            <div class="col-lg-6 text-center mb-6">
+                <img src="{% static 'img/no-messages.png' %}" width=50%>
+            </div>
+            {% endif %}
 
 
 

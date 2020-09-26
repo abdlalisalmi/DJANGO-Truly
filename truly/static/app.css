@@ -186,7 +186,7 @@ body {
     background-color: rgba(0,0,0,.5);
     transition: all .3s ease;
 }
-  .profile-pic {
+.profile-pic {
     border-radius: 50%;
     height: 200px;
     width: 200px;
@@ -327,5 +327,83 @@ form input[type="file"] {
     color: #ff5252;
   }
 
+  .unread_messages {
+    color: #f4f5f7;
+    background-color: #ff5252;
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    left: 50px;
+    font-size: 6;
+  }
 
   /*end message page*/
+
+
+
+
+.Hotbg
+{
+    position: absolute;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 40px;
+    border-radius: 40px;
+}
+.Hotbg:hover {
+  background: #f4f5f7;
+
+}
+.Hotbg:hover > .Hotbg-txt
+{
+    width: 120px;
+    /* padding-bottom: 5px; */
+}
+
+.Hotbg:hover > .Hotbg-btn
+{
+    background: #33d9b2;
+    color: #e9ecef;
+}
+
+.Hotbg-btn
+{
+    float: right;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.4s;
+    color: #33d9b2;
+    cursor: pointer;
+}
+
+.Hotbg-btn > i
+{
+    font-size: 25px;
+}
+
+a
+{
+    text-decoration: none;
+}
+
+.Hotbg-txt
+{
+    border: none;
+    background: none;
+    outline: none;
+    float: left;
+    padding: 5px;
+    color: #32325d;
+    font-size: 14px;
+    transition: 0.4s;
+    line-height: 32px;
+    width: 0px;
+    font-weight: normal;
+}
+  
