@@ -62,9 +62,10 @@ def profile(request):
     template_name = 'profile.html'
 
     if request.method == 'POST':
-        if request.FILES['avatar']:
+        avatar = request.FILES.get('avatar', False)
+        if avatar:
             account = Account.objects.get(user=request.user)
-            account.avatar = request.FILES['avatar']
+            account.avatar = avatar
             account.save()
             return redirect('account:profile')
 
