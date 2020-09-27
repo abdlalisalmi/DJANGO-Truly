@@ -19,7 +19,15 @@ def messages(request):
             if not ms.has_been_read:
                 ms.has_been_read = True
                 ms.save()
-                return JsonResponse({'statu': 'success'})
+                ac = Account.objects.get(user=request.user)
+                not_read_ms = Message.objects.filter(
+                    account=ac,
+                    has_been_read=False).count()
+                print(not_read_ms)
+                return JsonResponse({
+                    'statu': 'success',
+                    'is_last': not_read_ms == 0
+                })
             return JsonResponse({'statu': 'Already read'})
 
         if request.POST.get('id', False):

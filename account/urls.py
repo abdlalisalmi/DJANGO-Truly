@@ -5,7 +5,8 @@ from .views import (
     logout,
     profile,
     settings,
-    search
+    search,
+    profile_visit
 )
 
 
@@ -20,5 +21,6 @@ urlpatterns = [
     path('settings/', settings, name='settings'),
 
     path('search/', search, name='search'),
+    path('account/<str:account>/', profile_visit, name='profile_visit'),
 
 ]

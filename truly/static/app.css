@@ -199,6 +199,7 @@ body {
     transition: all .3s ease;
     text-decoration: none;
     cursor: pointer;
+    position: relative;
 }
 
 .profile-pic:hover {
@@ -206,6 +207,7 @@ body {
     z-index: 10000;
     color: #fff;
     font-size: 18px;
+    font-weight: 500;
     transition: all .3s ease;
     text-decoration: none;
 }
@@ -220,6 +222,47 @@ form input[type="file"] {
           display: none;
           cursor: pointer;
  }
+ .change-pic {
+  position: absolute;;
+  padding: 12px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50px;
+  left:150px;
+  bottom:20px;
+  background-color: rgba(0, 255, 128, 0.5);
+  font-size: 25px;
+  color: #fff;
+ }
+
+/* user search*/
+ .search-profile-pic {
+  border-radius: 50%;
+  height: 60px;
+  width: 60px;
+  background-size: cover;
+  background-position: center;
+  background-blend-mode: multiply;
+  vertical-align: middle;
+  text-align: center;
+  color: transparent;
+  transition: all .3s ease;
+  text-decoration: none;
+  cursor: pointer;
+ }
+ .search-profile-pic:hover  {
+  background-color: rgba(0,0,0,.5);
+  transition: all .3s ease;
+ }
+ .user-titlt {
+   color: #525f7f;
+   transition: all 0.3s;
+  }
+  .user-titlt:hover {
+    color: #33d9b2;
+ }
+ /* end user search*/
+
  /* End Profile Image */
 
 

@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import JsonResponse
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, views
@@ -148,4 +148,13 @@ def search(request):
                 }
             )
 
+    return render(request, template_name, context)
+
+
+def profile_visit(request, account):
+    template_name = 'profile_visit.html'
+
+    user = get_object_or_404(User, username=account)
+    account = Account.objects.get(user=user)
+    context = {'account': account}
     return render(request, template_name, context)

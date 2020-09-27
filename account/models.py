@@ -32,6 +32,9 @@ class Account(models.Model):
     def __str__(self):
         return self.user.username
 
+    def get_absolute_url(self):
+        return '/account/{}/'.format(self.user.username)
+
 
 @receiver(post_save, sender=User)
 def create_user_account(sender, instance, created, **kwargs):

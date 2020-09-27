@@ -13,7 +13,8 @@
                 {% csrf_token %}
                 <label for="profile-pic">
                     <div class="profile-pic shadow" style="background-image: url('{% if user.avatar %}{{user.avatar.url}}{% else %}{% static 'img/default-avatar.png' %}{% endif %}')">
-                        <span class="fa fa-camera"></span>
+                        {% comment %} <span class="fa fa-camera"></span> {% endcomment %}
+                        <i class="fa fa-camera change-pic" ></i>
                         <span>Change Image</span>
                     </div>
                 </label>
@@ -33,50 +34,42 @@
                 {% endif %}
             </p>
 
-            <small><b>Boi: </b id="boi-text">{% if user.boi %}{{user.boi}}{% endif %}</small>
 
-            {% comment %} <ul class="nav flex-column flex-sm-row justify-content-center mt-4">
+            <ul class="nav flex-column flex-sm-row justify-content-center mt-4">
                 <li class="nav-item">
-                    <a href="{% url 'message:messages' %}" class="nav-link mb-sm-3 mb-md-0" ><strong>{{numbre_ms}}</strong> Messages</a>
+                    <i class="fa fa-comments text-info m-0"></i>
+                    <a href="{% url 'message:messages' %}" class="nav-link m-0" >
+                        <strong>{{numbre_ms}}</strong> Messages
+                    </a>
                 </li>
-            </ul> {% endcomment %}
+            </ul>
 
 
-            <div class="row justify-content-center mt-3">
-            <div class="col-lg-6 text-left">
-                <div class="card bg-secondary text-center">
-                    Your link: <a href="{{ request.get_host }}/message/{{request.user}}" class="text-success font-weight-bold">{{ request.get_host }}/message/{{request.user}}</a>
-                    <small>Share this link with your friends to get messages from them.</small> 
-                </div>
-                <div class="card border-0 shadow m-4">
-                    <div class="card-body col-12">
-
-                        <div class="form-group">
-                            <span class="form-control form-control-alternative py-2"/>
-                                <i class="fa fa-envelope py-2 pr-2 text-success"></i> {% if user.user.email %}<a href="emailto:{{user.user.email}}" target="_blank">{{user.user.email}}</a>{% endif %}
-                            </span>
-                        </div>
-
-                        <div class="form-group">
-                            <span class="form-control form-control-alternative py-2"/>
-                                <i class="fab fa-facebook py-2 pr-2 text-success"></i> {% if user.facebook %}<a href="{{user.facebook}}" target="_blank">{{user.facebook}}</a>{% endif %}
-                            </span>
-                        </div>
-
-                        <div class="form-group">
-                            <span class="form-control form-control-alternative py-2"/>
-                                <i class="fab fa-instagram py-2 pr-2 text-success"></i> {% if user.instagram %}<a href="{{user.instagram}}" target="_blank">{{user.instagram}}</a>{% endif %}
-                            </span>
-                        </div>
-
-                        <div class="form-group">
-                            <span class="form-control form-control-alternative py-2"/>
-                                <i class="fab fa-twitter py-2 pr-2 text-success"></i> {% if user.twitter %}<a href="{{user.twitter}}" target="_blank">{{user.twitter}}</a>{% endif %}
-                            </span>
-                        </div>
+            <div class="row justify-content-center mt-3 mb-5">
+                <div class="col-lg-6 text-left">
+                    <div class="card bg-secondary text-left p-3">
+                        Your message link: <a href="{{ request.get_host }}/message/{{request.user}}" class="text-success font-weight-bold">{{ request.get_host }}/message/{{request.user}}</a>
+                        <small class="text-muted">Share this link with your friends to get messages from them.</small> 
                     </div>
+
+                    <span class="form-control form-control-alternative py-2 my-1"/>
+                        <i class="fa fa-address-card py-2 pr-2 text-success"></i>
+                        <b>Boi: </b id="boi-text">{% if user.boi %}{{user.boi}}{% endif %}
+                    </span>
+                    <span class="form-control form-control-alternative py-2 my-1"/>
+                        <i class="fa fa-envelope py-2 pr-2 text-success"></i> {% if user.user.email %}<a href="emailto:{{user.user.email}}" target="_blank">{{user.user.email}}</a>{% endif %}
+                    </span>
+                    <span class="form-control form-control-alternative py-2 my-1"/>
+                        <i class="fab fa-facebook py-2 pr-2 text-success"></i> {% if user.facebook %}<a href="{{user.facebook}}" target="_blank">{{user.facebook}}</a>{% endif %}
+                    </span>
+                    <span class="form-control form-control-alternative py-2 my-1"/>
+                        <i class="fab fa-instagram py-2 pr-2 text-success"></i> {% if user.instagram %}<a href="{{user.instagram}}" target="_blank">{{user.instagram}}</a>{% endif %}
+                    </span>
+                    <span class="form-control form-control-alternative py-2 my-1"/>
+                        <i class="fab fa-twitter py-2 pr-2 text-success"></i> {% if user.twitter %}<a href="{{user.twitter}}" target="_blank">{{user.twitter}}</a>{% endif %}
+                    </span>
+                    
                 </div>
-            </div>
             </div>
         </div>
     </div>

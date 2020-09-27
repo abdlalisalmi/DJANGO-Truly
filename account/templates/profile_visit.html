@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ block.super }}: {{account}}{% endblock title %}
+
+{% block content %}
+<div class="container pt-8 mb-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-2 text-center">
+            <img src="{% if account.avatar %}{{account.avatar.url}}{% else %}{% static 'img/default-avatar.png' %}{% endif %}"
+             alt="" class="img-fluid rounded-circle shadow mb-2" width="200px">
+            
+            
+
+        </div>
+        <div class="col-lg-4 text-lg-left text-center">
+            <h2 class="display-3">@{{account.user.username}}
+                <a href="{% url 'message:messageMaker' account.user.username %}" class="btn btn-info text-capitalize">Message</a>
+            </h2>
+            <span class="py-2">
+                {{account.full_name}}
+                {% if account.date_of_birth %}
+                    ({{account.date_of_birth}})
+                {% endif %}
+            </span>
+
+        </div>
+    </div>
+            <div class="row justify-content-center mt-3">
+            <div class="col-lg-6 text-left">
+                <div class="card bg-secondary text-left">
+
+                    <span class="form-control form-control-alternative py-2"/>
+                        <i class="fa fa-address-card py-2 pr-2 text-success"></i>
+                        <b>Boi: </b id="boi-text">{% if account.boi %}{{account.boi}}{% endif %}
+                    </span>
+
+                    <span class="form-control form-control-alternative py-2"/>
+                        <i class="fab fa-facebook py-2 pr-2 text-success"></i> {% if account.facebook %}<a href="{{account.facebook}}" target="_blank">{{account.facebook}}</a>{% endif %}
+                    </span>
+                    <span class="form-control form-control-alternative py-2"/>
+                        <i class="fab fa-instagram py-2 pr-2 text-success"></i> {% if account.instagram %}<a href="{{account.instagram}}" target="_blank">{{account.instagram}}</a>{% endif %}
+                    </span>
+                    <span class="form-control form-control-alternative py-2"/>
+                        <i class="fab fa-twitter py-2 pr-2 text-success"></i> {% if account.twitter %}<a href="{{account.twitter}}" target="_blank">{{account.twitter}}</a>{% endif %}
+                    </span>
+                </div>
+
+        </div>
+    </div>
+        
+</div>
+
+{% include 'edit_profile.html' %}
+
+{% endblock content %}

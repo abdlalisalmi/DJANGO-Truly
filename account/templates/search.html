@@ -7,31 +7,32 @@
     <div class="container pt-6">
         <h2 class="display-4 mt-3">Search</h2>
         <hr class="m-0 mb-2">
-        <p>You search for <b>{{search}}</b></p>
+        <p>You search for <strang class="text-success font-weight-bold	">{{search}}</strong></p>
 
         <div class="row justify-content-center">
             {% if accounts %}
+                <div class="col-lg-5 col-10 card  bg-secondary text-center shadow m-3">
                 {% for account in accounts %}
 
-                    <div class="col-lg-5 col-10 card  bg-secondary text-center shadow m-3">
                         <div class="row justify-content-center">
-                            <div class="col-2 my-3">
-                                <div class="nav-profile-pic shadow" 
-                                    style="background-image: url('{% if account.avatar %}{{account.avatar.url}}{% else %}{% static 'img/default-avatar.png' %}{% endif %}')">
-                                </div>
+                            <div class="col-lg-3 col-4 my-3">
+                                <img src="{% if account.avatar %}{{account.avatar.url}}{% else %}{% static 'img/default-avatar.png' %}{% endif %}"
+                                    alt="" class="img-fluid rounded-circle shadow mb-2" width="200px">
                             </div>
-                            <div class="col-10 text-left">
-                                <p class="display-4 mt-3 mb-0">{{account.full_name}}</p>
-                                <p class="m-0">@{{account.user.username}}</p>
+                            <div class="col-lg-9 col-8 text-left pl-2">
+                                <p class="mt-3 mb-0" style="font-size:24px; font-weight: 500">
+                                    <a class="user-titlt" href="{{account.get_absolute_url}}">@{{account.user.username}}</a>
+                                </p>
+                                <small class="m-0 text-muted" style="font-size:16px;">{{account.full_name}}</small>
                             </div>
                         </div>
-                    </div>
-
+                        <hr class="m-0">
 
                 {% endfor %}
+                </div>
             {% else %}
             <div class="col-lg-6 text-center mb-6">
-                <p class="display-3" style="color:#a5b1c2">no results</p>
+                <p class="display-1" style="color:#a5b1c2; font-size: 40px">no results</p>
             </div>
             {% endif %}
 

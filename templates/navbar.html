@@ -34,7 +34,7 @@
                     <a href="{% url 'message:messages' %}" class="dropdown-item">Messages {% if unread_messages > 0 %}<span class="badge badge-danger" id="messages-badge2">{{unread_messages}}</span>{% endif %}</a>
                     <a href="{% url 'account:profile' %}" class="dropdown-item">Profile</a>
                     <a href="{% url 'account:settings' %}" class="dropdown-item">Settings</a>
-                    <a type="button" class="dropdown-item" data-toggle="modal" data-target=".bd-example-modal-sm">Logout</a>
+                    <a class="dropdown-item" data-toggle="modal" data-target=".bd-example-modal-sm">Logout</a>
                 </div>
             </li>
         {% else %}
@@ -96,7 +96,7 @@
                             </form>
                         </div>
                         <div class="col-6 text-center">
-                            <a type="button" class="p-2" data-dismiss="modal">Cancel</a>
+                            <a class="p-2" data-dismiss="modal">Cancel</a>
                         </div>
                     </div>
                 </div>

@@ -1,4 +1,5 @@
 const showPassword = document.querySelector('.show-password');
+const termsOfUseBtn = document.querySelector('#terms_of_use');
 const logoutBtn = document.querySelector('#logout-btn');
 const editProBtn = document.querySelector('#edit-profile-btn');
 const profilePic = document.querySelector('#profile-pic');
@@ -23,6 +24,13 @@ if (showPassword) {
             showPassword.classList.remove('fa-eye-slash')
             showPassword.classList.add('fa-eye')
         }
+    })
+}
+
+if (termsOfUseBtn) {
+    termsOfUseBtn.addEventListener('change', () => {
+        btnState = document.querySelector('#signup-btn');
+        btnState.disabled = !btnState.disabled;
     })
 }
 
@@ -164,8 +172,10 @@ if (messagesItems) {
                     if (data['statu'] == 'success') {
                         document.querySelector('#msg-icon-' + message.attributes.ID.value).classList.add('has-been-read');
                         document.querySelector('#msg-icon-' + message.attributes.ID.value).classList.remove('text-success');
-                        document.querySelector('#messages-badge1').remove();
-                        document.querySelector('#messages-badge2').remove();
+                        if (data['is_last']) {
+                            document.querySelector('#messages-badge1').remove();
+                            document.querySelector('#messages-badge2').remove();
+                        }
                     }
                 })
         })
