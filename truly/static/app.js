@@ -208,14 +208,12 @@ if (sendMessageBtn) {
                                     <div class="col-12 text-center">
                                         <img src="/static/img/message-send.png" width=80%>
                                     </div>
-                                    <div class="col-6 text-left ">
+                                    <div class="col-6 text-center ">
                                         <a onclick="location.reload();" class="pl-4 text-success">
                                             <i class="fas fa-sync-alt "></i> Another message
                                         </a>
                                     </div>
-                                    <div class="col-6 text-right">
-                                        <a href="/register" class="pr-4 butt butt-register">Create account</a>
-                                    </div>
+                                    
                                 </div>
                     `;
                 }
@@ -342,7 +340,23 @@ if (contactUSSubmitBtn) {
 
 
 
+function copyLink() {
+    /* Get the text field */
+    var link = document.getElementById("profile-link");
+    /* Select the text field */
+    link.select();
+    link.setSelectionRange(0, 99999); /*For mobile devices*/
 
+    // /* Copy the text inside the text field */
+    document.execCommand("copy");
+
+    /* Alert the copied text */
+    const copyLinkBtn = document.getElementById("copy-link-btn");
+    copyLinkBtn.classList.add('btn-default')
+    copyLinkBtn.innerHTML = `
+        <i class="ni ni-check-bold pr-2"></i> Link copied
+    `
+}
 
 
 function getCookie(name) {

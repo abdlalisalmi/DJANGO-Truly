@@ -48,8 +48,10 @@
             <div class="row justify-content-center mt-3 mb-5">
                 <div class="col-lg-6 text-left">
                     <div class="card bg-secondary text-left p-3">
-                        Your message link: <a href="{{ request.get_host }}/message/{{request.user}}" class="text-success font-weight-bold">{{ request.get_host }}/message/{{request.user}}</a>
+                        Your message link: 
+                        <input type="text" class="form-control form-control-alternative text-success font-weight-bold my-2" value="{{ request.get_host }}/message/{{request.user}}" id="profile-link">
                         <small class="text-muted">Share this link with your friends to get messages from them.</small> 
+                        <button class="btn btn-success m-2 mt-3 text-capitalize" id="copy-link-btn" onclick="copyLink()" ><i class="fa fa-copy mr-2"></i>Copy link</button>
                     </div>
 
                     <span class="form-control form-control-alternative py-2 my-1"/>

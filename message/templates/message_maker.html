@@ -41,10 +41,11 @@
                 <div class="col-lg-6 text-center">
                     <img src="{% static 'img/account-disable.png' %}" width=70%>
                 </div>
-
-                <div class="col-12 text-center">
-                    <a href="/register" class="pr-4 butt butt-register">Create account</a>
-                </div>
+                {% if not request.user.is_authenticated %}
+                    <div class="col-12 text-center">
+                        <a href="/register" class="pr-4 butt butt-register">Create account</a>
+                    </div>
+                {% endif %}
             {% endif %}
 
         </div>
