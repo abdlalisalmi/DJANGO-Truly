@@ -18,9 +18,11 @@ class RegistrationForm(forms.ModelForm):
 
     def clean_email(self):
         email = self.cleaned_data['email']
-        if User.objects.filter(email=self.cleaned_data['email']).exists():
-            raise forms.ValidationError("Email already exists")
-        return email
+        if email:
+            if User.objects.filter(email=self.cleaned_data['email']).exists():
+                raise forms.ValidationError("Email already exists")
+            return email
+        raise forms.ValidationError("This field is required")
 
     def save(self):
         user = User(

@@ -90,7 +90,8 @@ def profile(request):
         account.facebook = facebook
         account.instagram = instagram
         account.twitter = twitter
-        account.date_of_birth = date_of_birth
+        if date_of_birth:
+            account.date_of_birth = date_of_birth
         account.save()
 
         return JsonResponse({'success': True})
