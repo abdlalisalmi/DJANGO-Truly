@@ -245,6 +245,99 @@ if (searchBtn) {
     })
 }
 
+/* contact us */
+let contactUSForm = document.getElementById('contact-us-form');
+let contactUSSubmitBtn = document.getElementById('form-submit');
+let formName = document.getElementById('form-name');
+let formEmail = document.getElementById('form-email');
+let formMessage = document.getElementById('form-message');
+
+if (contactUSSubmitBtn) {
+    contactUSSubmitBtn.addEventListener('click', () => {
+        // Build formData object.
+        let formData = new FormData();
+        formData.append('full_name', formName.value);
+        formData.append('email', formEmail.value);
+        formData.append('message', formMessage.value);
+
+        fetch("/contact-us/",
+            {
+                body: formData,
+                method: "post",
+                credentials: 'same-origin',
+                headers: {
+                    "X-CSRFToken": csrftoken
+                }
+            }).then(response => response.json())
+            .then(data => {
+                function changeToF(element) {
+                    if (element.parentElement.classList.contains('has-success')) {
+                        element.parentElement.classList.remove('has-success');
+                        element.parentElement.classList.add('has-danger');
+                    } else {
+                        element.parentElement.classList.add('has-danger');
+                    }
+                }
+                function changeToS(element) {
+                    if (element.parentElement.classList.contains('has-danger')) {
+                        element.parentElement.classList.remove('has-danger');
+                        element.parentElement.classList.add('has-success');
+                    } else {
+                        element.parentElement.classList.add('has-success');
+                    }
+                }
+                function clearInputs() {
+                    formName.parentElement.classList.remove('has-danger');
+                    formEmail.parentElement.classList.remove('has-danger');
+                    formMessage.parentElement.classList.remove('has-danger');
+                    formName.parentElement.classList.remove('has-success');
+                    formEmail.parentElement.classList.remove('has-success');
+                    formMessage.parentElement.classList.remove('has-success');
+                    document.getElementById('name-error').innerHTML = '';
+                    document.getElementById('email-error').innerHTML = '';
+                    document.getElementById('message-error').innerHTML = '';
+                }
+
+                if (data.success) {
+                    formName.value = '';
+                    formEmail.value = '';
+                    formMessage.value = '';
+                    clearInputs();
+                    document.getElementById('form-container').innerHTML = `
+                    <div class="col-12 mb-5 text-center">
+                        <i class="fa fa-check-circle fa-5x text-success"></i>
+                        <p class="display-2" style="color:#adb5bd">Your message has sent successfully.</p>
+                        <a href="/" class="btn btn-secondary text-capitalize m-2">Home</a>
+                    </div>
+                    `;
+                } else {
+                    if (data.errors.full_name) {
+                        changeToF(formName);
+                        document.getElementById('name-error').innerHTML = `<small class="text-danger">${data.errors.full_name}</small>`
+                    } else {
+                        changeToS(formName);
+                        document.getElementById('name-error').innerHTML = '';
+                    }
+
+                    if (data.errors.email) {
+                        changeToF(formEmail);
+                        document.getElementById('email-error').innerHTML = `<small class="text-danger">${data.errors.email}</small>`
+                    } else {
+                        changeToS(formEmail);
+                        document.getElementById('email-error').innerHTML = '';
+                    }
+                    if (data.errors.message) {
+                        changeToF(formMessage);
+                        document.getElementById('message-error').innerHTML = `<small class="text-danger">${data.errors.message}</small>`
+                    } else {
+                        changeToS(formMessage);
+                        document.getElementById('message-error').innerHTML = '';
+                    }
+                }
+            });
+    })
+}
+/* end contact us */
 
 
 

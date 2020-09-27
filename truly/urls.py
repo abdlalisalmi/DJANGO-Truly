@@ -8,11 +8,14 @@ from django.conf.urls.static import static
 handler404 = handler404
 
 urlpatterns = [
+    path('', HomePage, name='homePage'),
+
+    path('', include('pages.urls')),
+
     path('', include('account.urls')),
 
     path('', include('message.urls')),
 
-    path('', HomePage, name='homePage'),
 
     path('admin/', admin.site.urls),
 
