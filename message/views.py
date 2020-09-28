@@ -11,6 +11,7 @@ from account.models import Account
 @login_required(login_url='account:login')
 def messages(request):
     template_name = 'messages.html'
+    ac = Account.objects.get(user=request.user)
 
     if request.method == 'POST':
         if request.POST.get('read_id', False):
@@ -19,7 +20,6 @@ def messages(request):
             if not ms.has_been_read:
                 ms.has_been_read = True
                 ms.save()
-                ac = Account.objects.get(user=request.user)
                 not_read_ms = Message.objects.filter(
                     account=ac,
                     has_been_read=False).count()
@@ -32,12 +32,11 @@ def messages(request):
 
         if request.POST.get('id', False):
             id = int(request.POST['id'])
-            ms = Message.objects.get(id=id)
-            print(ms.message)
-            ms.delete()
-            return JsonResponse({'statu': 'success', 'msg': 'the message has been deleted.'})
-
-    ac = Account.objects.get(user=request.user)
+            ms = Message.objects.get(id=id, account=ac)
+            if ms:
+                ms.delete()
+                return JsonResponse({'statu': 'success', 'msg': 'the message has been deleted.'})
+            return JsonResponse({'statu': 'failed', 'msg': 'no message deleted.'})
 
     messages = Message.objects.filter(account=ac).order_by('-date')
     # message = Message.objects.first()

@@ -170,8 +170,8 @@ if (messagesItems) {
                 }).then(response => response.json())
                 .then(data => {
                     if (data['statu'] == 'success') {
-                        document.querySelector('#msg-icon-' + message.attributes.ID.value).classList.add('has-been-read');
-                        document.querySelector('#msg-icon-' + message.attributes.ID.value).classList.remove('text-success');
+                        msgIcon = document.querySelector('#msg-icon-' + message.attributes.ID.value)
+                        msgIcon.classList.add('has-been-read');
                         if (data['is_last']) {
                             document.querySelector('#messages-badge1').remove();
                             document.querySelector('#messages-badge2').remove();
