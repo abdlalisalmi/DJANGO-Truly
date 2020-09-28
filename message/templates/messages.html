@@ -16,11 +16,13 @@
                     <div class="col-lg-5 col-10 card message-card bg-secondary text-center shadow m-3 message-item" id="{{message.id}}">
                         <div class="row justify-content-center mb-2">
 
-                            <div class="col-2 text-left" data-toggle="modal" data-target=".show-message{{message.id}}-modal">
-                                <i class="fa fa-envelope {% if message.has_been_read %}has-been-read {% else %}text-success{% endif %} fa-4x" id="msg-icon-{{message.id}}"></i>
+                            <div class="col-2 text-left mt-2" data-toggle="modal" data-target=".show-message{{message.id}}-modal">
+                                <i class="fa fa-envelope {% if message.has_been_read %}has-been-read {% else %}text-success{% endif %} fa-3x" id="msg-icon-{{message.id}}"></i>
                             </div>
 
-                            <div class="col-8 text-left mt-3 pl-4" data-toggle="modal" data-target=".show-message{{message.id}}-modal">
+                            <div class="col-8 text-left mt-1 pl-4" data-toggle="modal" data-target=".show-message{{message.id}}-modal">
+                                <small class="">{{message.message|truncatewords:4}}</small>
+                                <hr class="m-0">
                                 <small class="">{{message.date}}</small>
                             </div>
 
@@ -31,17 +33,22 @@
                         </div>
                     </div>
 
+                    <!-- Modal -->
                     <div class="modal fade show-message{{message.id}}-modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-                        <div class="modal-dialog modal-sm">
-                            <div class="modal-content message-card">
-                                <a class="btn text-danger card-header p-2" data-dismiss="modal">
-                                    <i class="fa fa-times"></i>
-                                </a>
-                                <div class="card-body">
-                                    {{message.message}}
-                                </div>
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content card mt-9">
+                            <div class="modal-header justify-content-center pb-0 bg-secondary">
+                                <p class="text-default">Message</p>
+                            </div>
+                            <div class="modal-body pb-2">
+                                <p>{{message.message}}</p>
+                                <small class="" ><i class="fa fa-calendar-alt mr-2 text-success"></i>{{message.date}}</small>
+                            </div>
+                            <div class="modal-footer p-2">
+                                <a class="pr-2" style="cursor:pointer; color:#ff5252" data-dismiss="modal">Close</a>
                             </div>
                         </div>
+                    </div>
                     </div>
 
 

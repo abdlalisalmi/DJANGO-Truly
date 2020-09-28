@@ -370,6 +370,7 @@ form input[type="file"] {
     color: #ff5252;
   }
 
+
   .unread_messages {
     color: #f4f5f7;
     background-color: #ff5252;
@@ -450,3 +451,5 @@ a
     font-weight: normal;
 }
   
+
+
