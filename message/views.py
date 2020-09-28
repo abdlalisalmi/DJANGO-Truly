@@ -68,3 +68,18 @@ def messageMaker(request, username):
 
     context.update({'user_reciver': account})
     return render(request, template_name, context)
+
+
+def new_messages_check(request):
+    if request.user.is_authenticated:
+        if request.method == 'POST':
+            ac = Account.objects.get(user=request.user)
+            ms = Message.objects.filter(account=ac,
+                                        has_been_read=False).count()
+            if ms > 0:
+                return JsonResponse({'messages': True, 'numbre_of_messages': ms})
+            return JsonResponse({'messages': False})
+
+        else:
+            return JsonResponse({'error': 'just POST method is allowed.'})
+    return JsonResponse({'error': 'You are not authenticated.'})

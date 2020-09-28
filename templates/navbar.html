@@ -24,14 +24,14 @@
             <li class="nav-item dropdown">
                 <a href="#" class="nav-link" data-toggle="dropdown" role="button">
                     {% comment %} <img src="{% if user.avatar.url %}{{user.avatar.url}}{% else %}{% static 'img/user.svg' %}{% endif %}" class="img-fluid rounded-circle shadow" width="40px"> {% endcomment %}
-                    <div class="nav-profile-pic shadow" 
+                    <div class="nav-profile-pic shadow" id="nofification-div"
                         style="background-image: url('{% if user.avatar %}{{user.avatar.url}}{% else %}{% static 'img/default-avatar.png' %}{% endif %}')">
                         {% if unread_messages > 0 %}<span class="unread_messages" id="messages-badge1"></span>{% endif %}
                     </div>
 
                 </a>
                 <div class="dropdown-menu dropdown-menu-right shadow ">
-                    <a href="{% url 'message:messages' %}" class="dropdown-item">Messages {% if unread_messages > 0 %}<span class="badge badge-danger" id="messages-badge2">{{unread_messages}}</span>{% endif %}</a>
+                    <a href="{% url 'message:messages' %}" class="dropdown-item">Messages <span class="badge badge-danger" id="messages-badge2">{% if unread_messages > 0 %}{{unread_messages}}{% endif %}</span></a>
                     <a href="{% url 'account:profile' %}" class="dropdown-item">Profile</a>
                     <a href="{% url 'account:settings' %}" class="dropdown-item">Settings</a>
                     <a class="dropdown-item" data-toggle="modal" data-target=".bd-example-modal-sm">Logout</a>

@@ -358,6 +358,31 @@ function copyLink() {
     `
 }
 
+const interval = 60000 * 5;
+// const interval = 3000;
+function newMessagesCheck() {
+    if (!document.getElementById('messages-badge1')) {
+        console.log('request send')
+        fetch("/messages/check/",
+            {
+                // body: formData,
+                method: "post",
+                credentials: 'same-origin',
+                headers: {
+                    "X-CSRFToken": csrftoken
+                }
+            }).then(response => response.json())
+            .then(data => {
+                if (data['messages']) {
+                    document.getElementById('nofification-div').innerHTML = `<span class="unread_messages" id="messages-badge1"></span>`;
+                    document.getElementById('messages-badge2').innerText = data['numbre_of_messages'];
+                }
+            })
+    }
+}
+
+setInterval(newMessagesCheck, interval)
+
 
 function getCookie(name) {
     let cookieValue = null;
