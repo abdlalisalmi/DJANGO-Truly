@@ -6,20 +6,20 @@
 #### Some images from the Website:
 
 <p>Home page:</p>
-<img src="https://i.imgur.com/yM8ktdN.png" width="500px">
+<img align="center" src="https://i.imgur.com/yM8ktdN.png" width="500px">
 <p>SignUp page:</p>
-<img src="https://i.imgur.com/1knB23Q.png" width="500px">
+<img align="center" src="https://i.imgur.com/1knB23Q.png" width="500px">
 <p>Login page:</p>
-<img src="https://i.imgur.com/ISpJJ7F.png" width="500px">
+<img align="center" src="https://i.imgur.com/ISpJJ7F.png" width="500px">
 <p>Profile page:</p>
-<img src="https://i.imgur.com/EqIzI70.png" width="500px">
+<img align="center" src="https://i.imgur.com/EqIzI70.png" width="500px">
 <p>Messages page:</p>
-<img src="https://i.imgur.com/Ra4I9Yv.png" width="500px">
+<img align="center" src="https://i.imgur.com/Ra4I9Yv.png" width="500px">
 <p>Message modal:</p>
-<img src="https://i.imgur.com/kthorr1.png" width="500px">
+<img align="center" src="https://i.imgur.com/kthorr1.png" width="500px">
 <p>Send message page:</p>
-<img src="https://i.imgur.com/XLdBi97.png" width="500px">
+<img align="center" src="https://i.imgur.com/XLdBi97.png" width="500px">
 <p>Account settings page:</p>
-<img src="https://i.imgur.com/8jjDk79.png" width="500px">
+<img align="center" src="https://i.imgur.com/8jjDk79.png" width="500px">
 
 see the Website live: <a href="https://truly-demo.herokuapp.com/">have look</a>
