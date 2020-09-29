@@ -7,21 +7,10 @@
              Truly
         </a>
 
-        <a data-toggle="modal" data-target=".bd-example-modal-lg">
+        <a class="mr-5" data-toggle="modal" data-target=".bd-example-modal-lg">
             <i class="fa fa-search search-btn" ></i>
         </a>
 
-
-        {% comment %} <div class="Hotbg">
-            <input type="text" id="search-input" class="Hotbg-txt" placeholder="Search for users">
-            <a href="#" class="Hotbg-btn" id="search-btn">
-                <i class="fa fa-search"></i>
-            </a>
-            <form method="POST" action="{% url 'account:search' %}" id="search-form">
-                {% csrf_token %}
-                <input type="hidden" name="search" id="query">
-            </form>
-        </div> {% endcomment %}
 
 
         {% if request.user.is_authenticated %}
@@ -45,7 +34,7 @@
                     <a href="{% url 'account:settings' %}" class="dropdown-item">
                         <img src="{% static 'img/settings.svg' %}" width="35px" class="pr-2">Settings
                     </a>
-                    <a class="dropdown-item" data-toggle="modal" data-target=".bd-example-modal-sm">
+                    <a class="dropdown-item" data-toggle="modal" data-target=".bd-example-modal-sm" style="cursor:pointer">
                         <img src="{% static 'img/logout.svg' %}" width="35px" class="pr-2">Logout
                     </a>
                 </div>

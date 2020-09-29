@@ -37,10 +37,11 @@
 
             <ul class="nav flex-column flex-sm-row justify-content-center mt-4">
                 <li class="nav-item">
-                    <i class="fa fa-comments text-info m-0"></i>
-                    <a href="{% url 'message:messages' %}" class="nav-link m-0" >
-                        <strong>{{numbre_ms}}</strong> Messages
+                    <a href="{% url 'message:messages' %}" class="dropdown-item">
+                        <img src="{% static 'img/messages.svg' %}" width="35px" class="pr-2"><strong>{{numbre_ms}}</strong>
+                        <span class="badge badge-danger" id="messages-badge2">{% if unread_messages > 0 %}{{unread_messages}}{% endif %}</span>
                     </a>
+                    
                 </li>
             </ul>
 
