@@ -228,17 +228,6 @@ if (searchBtn) {
         if (searchInput) {
             document.querySelector('#query').value = searchInput;
             document.querySelector('#search-form').submit();
-            // let formData = new FormData();
-            // formData.append('search', searchInput);
-            // fetch(`/search/`,
-            //     {
-            //         body: formData,
-            //         method: "POST",
-            //         credentials: 'same-origin',
-            //         headers: {
-            //             "X-CSRFToken": csrftoken
-            //         }
-            //     })
         }
     })
 }
@@ -362,7 +351,6 @@ const interval = 60000 * 5;
 // const interval = 3000;
 function newMessagesCheck() {
     if (!document.getElementById('messages-badge1')) {
-        console.log('request send')
         fetch("/messages/check/",
             {
                 // body: formData,

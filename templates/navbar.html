@@ -7,8 +7,12 @@
              Truly
         </a>
 
+        <a data-toggle="modal" data-target=".bd-example-modal-lg">
+            <i class="fa fa-search search-btn" ></i>
+        </a>
 
-        <div class="Hotbg">
+
+        {% comment %} <div class="Hotbg">
             <input type="text" id="search-input" class="Hotbg-txt" placeholder="Search for users">
             <a href="#" class="Hotbg-btn" id="search-btn">
                 <i class="fa fa-search"></i>
@@ -17,7 +21,7 @@
                 {% csrf_token %}
                 <input type="hidden" name="search" id="query">
             </form>
-        </div>
+        </div> {% endcomment %}
 
 
         {% if request.user.is_authenticated %}
@@ -31,10 +35,19 @@
 
                 </a>
                 <div class="dropdown-menu dropdown-menu-right shadow ">
-                    <a href="{% url 'message:messages' %}" class="dropdown-item">Messages <span class="badge badge-danger" id="messages-badge2">{% if unread_messages > 0 %}{{unread_messages}}{% endif %}</span></a>
-                    <a href="{% url 'account:profile' %}" class="dropdown-item">Profile</a>
-                    <a href="{% url 'account:settings' %}" class="dropdown-item">Settings</a>
-                    <a class="dropdown-item" data-toggle="modal" data-target=".bd-example-modal-sm">Logout</a>
+                    <a href="{% url 'message:messages' %}" class="dropdown-item">
+                        <img src="{% static 'img/messages.svg' %}" width="35px" class="pr-2">Messages
+                        <span class="badge badge-danger" id="messages-badge2">{% if unread_messages > 0 %}{{unread_messages}}{% endif %}</span>
+                    </a>
+                    <a href="{% url 'account:profile' %}" class="dropdown-item">
+                        <img src="{% static 'img/profile.svg' %}" width="35px" class="pr-2">Profile
+                    </a>
+                    <a href="{% url 'account:settings' %}" class="dropdown-item">
+                        <img src="{% static 'img/settings.svg' %}" width="35px" class="pr-2">Settings
+                    </a>
+                    <a class="dropdown-item" data-toggle="modal" data-target=".bd-example-modal-sm">
+                        <img src="{% static 'img/logout.svg' %}" width="35px" class="pr-2">Logout
+                    </a>
                 </div>
             </li>
         {% else %}
@@ -104,3 +117,25 @@
         </div>
     </div>
 </div>
+
+<!-- Search modal -->
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content search-modal">
+                <div class="form-group mb-0">
+                    <div class="input-group input-group-alternative p-2">
+                        <input class="form-control" id="search-input" placeholder="Search for a users" type="text">
+                        <div class="input-group-append">
+                            <a id="search-btn">
+                                <i class="fa fa-search search-btn"></i></span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <form method="POST" action="{% url 'account:search' %}" id="search-form">
+                    {% csrf_token %}
+                    <input type="hidden" name="search" id="query">
+                </form>
+            </div>
+        </div>
+        </div>
