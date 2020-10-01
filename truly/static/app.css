@@ -390,7 +390,7 @@ form input[type="file"] {
     border-radius: 20px;
 }
 
-.search-btn
+.nav-search-btn
 {
     float: right;
     width: 40px;
@@ -399,13 +399,47 @@ form input[type="file"] {
     display: flex;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
+    position: absolute;
+    left: 50%;
+}
+.nav-search-btn i {
+  transition: 0.4s;
+  color: #33d9b2;
+  font-size: 25px;
+}
+.nav-search-btn i:hover {
+    color: #00a07b;
+}
+
+.search-btn {
     transition: 0.4s;
     color: #33d9b2;
-    cursor: pointer;
     font-size: 25px;
+    width: 60px;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
 }
 .search-btn:hover {
-    color: #00a07b;
+  color: #00a07b;
+}
+
+.search-cancle-btn {
+  transition: 0.4s;
+  color: #ff5252;
+  font-size: 25px;
+  width: 60px;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+.search-cancle-btn:hover {
+  color: #da2525;
 }
   
 
